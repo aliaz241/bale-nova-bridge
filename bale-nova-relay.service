@@ -1,0 +1,18 @@
+[Unit]
+Description=Bale-Nova bridge relay (dumb long-polling, no AI)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/path/to/bale-nova-bridge
+ExecStart=/usr/bin/python3 /path/to/bale-nova-bridge/bale_relay.py
+Restart=always
+RestartSec=5
+StartLimitIntervalSec=300
+StartLimitBurst=20
+TimeoutStopSec=10
+KillMode=control-group
+
+[Install]
+WantedBy=multi-user.target
